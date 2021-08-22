@@ -20,20 +20,43 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/detail/:id',
+    path: '/detail',
     name: 'Detail',
-    component:()=> import('../views/Detail.vue')
+    component: ()=> import('../views/Detail.vue')
+    
   },
   {
     path: '/pra',
     name: 'Pra',
-    component: ()=> import('../views/Pra.vue')
+    
   },
   {
     path: '/login',
     name: 'Login',
     component: ()=> import('../views/Login')
+  },
+  {
+    path: '/product/:id/:name',
+    name: 'Product',
+    component: ()=> import('../views/Product.vue')
+  },
+  {
+    path: '/Shopping1',
+    component: ()=> import('../views/Shopping1.vue')
+  },
+  {
+    path: '/Shopping2',
+    component: ()=> import('../views/Shopping2.vue')
+  },
+  {
+    path: '/Shopping3',
+    component: ()=> import('../views/Shopping3.vue')
+  },
+  {
+    path: '/Shopping4',
+    component: ()=> import('../views/Shopping4.vue')
   }
+  
 ]
 
 const router = new VueRouter({

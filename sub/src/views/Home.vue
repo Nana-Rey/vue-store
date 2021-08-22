@@ -1,20 +1,26 @@
 <template>
  <div id="app">
-   <table border="1">
-  <ul v-for="item of items" v-bind:key="item.name">
 
-   <tr>
-     <th>{{ item.id }}</th>
-   <th>{{item.title}}</th>
-   <th>値段{{item.price}}
-
-       <router-link to="{detail.id}">詳細</router-link>
+    
+   <v-data-table
+   :headers="headers"
+   :items="items">
+  <ul v-for="item of items" v-bind:key="item.id">
+    
+    <router-link :to="`product/${item.id}/${item.title}`">
+    <v-btn color="info">
+   
+       </v-btn>
+   </router-link>
      
-     </th>
-     </tr>
+<v-spacer></v-spacer>
+     
   </ul>
- </table>
+ </v-data-table>
+     
+
  </div>
+ 
 </template>
 
 <script>
@@ -23,25 +29,36 @@
    
   data: function() {
    return {
-     cartItems: [], 
+     headers:[
+       {  value: 'name',
+
+       },
+ 
+           { text: '順番', 
+            value: 'id' 
+          },
+          {
+            text: '商品',
+            value: 'title',
+          },
+          { text: '値段', 
+            value: 'price' 
+          },
+          { text: '詳細', 
+            value: 'link' 
+          },
+     ],
+
     items: [
-  { id:1,title:"商品1",price:500,qty:1 },
-  { id:2,title:"商品2",price:600,qty:1},
-  { id:3,title:"商品3",price:700,qty:1 },
-  { id:4,title:"商品4",price:800,qty:1 },
+  { id:1,title:"商品1",price:500,qty:1,link:' '},
+  { id:2,title:"商品2",price:600,qty:1,link:'./Shopping2'},
+  { id:3,title:"商品3",price:700,qty:1, link:'./Shopping3'},
+  { id:4,title:"商品4",price:800,qty:1,link:'./Shopping4'},
 ],
  
    }
 
    },
-   methods: {
-        onClick: function() {
-          this.items.push({
-          
-          });
-          
-        }
-    }
   
    }
   
