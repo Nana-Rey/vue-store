@@ -41,21 +41,11 @@ const routes = [
     component: ()=> import('../views/Product.vue')
   },
   {
-    path: '/Shopping1',
-    component: ()=> import('../views/Shopping1.vue')
-  },
-  {
-    path: '/Shopping2',
-    component: ()=> import('../views/Shopping2.vue')
-  },
-  {
-    path: '/Shopping3',
-    component: ()=> import('../views/Shopping3.vue')
-  },
-  {
-    path: '/Shopping4',
-    component: ()=> import('../views/Shopping4.vue')
+    path: '/cart',
+    name: 'Cart',
+    component: ()=> import('../views/Cart.vue')
   }
+  
   
 ]
 
