@@ -6,7 +6,7 @@
       :headers="headers"
       :items="items"
      >
-     <template v-slot:item.actions="{ item }">
+     <template v-slot:[`item.actions`]="{ item }">
       <v-icon
         midiam
         class="mr-2"
@@ -49,7 +49,7 @@
       },
       {
         text: '商品',
-        value: 'title',
+        value: 'title'
       },
       { text: '値段', 
         value: 'price' 
@@ -64,13 +64,14 @@
     items: [
       { id:1,title:"商品1",price:500,qty:1,link:''},
       { id:2,title:"商品2",price:600,qty:1,link:''},
-      { id:3,title:"商品3",price:700,qty:1, link:''},
-      { id:4,title:"商品4",price:800,qty:1,link:''},
+      { id:3,title:"商品3",price:"700",qty:1, link:''},
+      { id:4,title:"商品4",price:"800",qty:1,link:''},
     ],
+
     addItemToBasket(item)
     {
-      console.log(item.title);
-      this.$router.push({ path: `/product/${item.id}/${item.title}` })
+      this.$router.push({path: `/product/${item.id}/${item.title}/${item.price}/`});
+
     }
    }
 

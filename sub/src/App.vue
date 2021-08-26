@@ -6,6 +6,7 @@
        <router-link to="/cart">Cart </router-link>|
       <router-link to="/login">Login </router-link>|
       <router-link to="/pra">Pra </router-link>|
+      <router-link to="/signup">Signup</router-link>
      
        
     </div>

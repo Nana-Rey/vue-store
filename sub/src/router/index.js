@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -33,17 +35,28 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: ()=> import('../views/Login')
+    component: ()=> import('../views/Login.vue')
   },
   {
-    path: '/product/:id/:name',
+    path: '/product/:id/:name/:price',
     name: 'Product',
-    component: ()=> import('../views/Product.vue')
+    component: ()=> import('../views/Product.vue'),
+    props: true
   },
   {
     path: '/cart',
     name: 'Cart',
     component: ()=> import('../views/Cart.vue')
+  },
+  {
+    path: '/list',
+    name: 'List',
+    component: ()=> import('../views/List.vue')
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: ()=> import('../views/Signup.vue')
   }
   
   
