@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <header class="header">
+
+    </header>
     <div id="nav">
       <router-link to="/">Home </router-link> |
       <router-link to="/detail">Detail </router-link>|
