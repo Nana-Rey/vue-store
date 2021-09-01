@@ -38,7 +38,7 @@ const routes = [
     component: ()=> import('../views/Login.vue')
   },
   {
-    path: '/product/:id/:name/:price',
+    path: '/product/:id/:productname/:price',
     name: 'Product',
     component: ()=> import('../views/Product.vue'),
     props: true
@@ -57,7 +57,8 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: ()=> import('../views/Signup.vue')
-  }
+  },
+  
   
   
 ]
