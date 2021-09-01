@@ -46,7 +46,8 @@ const routes = [
   {
     path: '/cart',
     name: 'Cart',
-    component: ()=> import('../views/Cart.vue')
+    component: ()=> import('../views/Cart.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/list',
@@ -66,5 +67,6 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
 
 export default router
