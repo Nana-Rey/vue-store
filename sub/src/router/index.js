@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+//import firebase from 'firebase'
+
 
 
 
@@ -47,7 +49,7 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: ()=> import('../views/Cart.vue'),
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
   },
   {
     path: '/list',
@@ -59,14 +61,36 @@ const routes = [
     name: 'Signup',
     component: ()=> import('../views/Signup.vue')
   },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: ()=> import('../views/Logout.vue'),
+    meta: { requiresAuth: true },
+  }
   
   
   
-]
+];
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
+// router.beforeEach((to,next) =>{
+//   const requiresAuth= (to.matched.some(record => record.meta.requiresAuth))
+//     if (requiresAuth){
 
-export default router
+//       firebase.auth().onAuthStateChanged(function (user) {
+//       if (user) {
+//         next();
+//       } else {
+//         next({ name: 'Login'});
+//       }
+//     })
+//   } else {
+//     next();
+//   }
+// });
+
+export default router;

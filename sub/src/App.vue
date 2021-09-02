@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <header class="header">
-
+      <router-link to="/">
+    
+      </router-link>
     </header>
     <div id="nav">
       <router-link to="/">Home </router-link> |
@@ -16,6 +18,11 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+
+</script>
+
 
 <style lang="scss">
 #app {
