@@ -3,7 +3,7 @@
     <h2>Login</h2>
     <input type="email" placeholder="Email" v-model="email">
     <input type="password" placeholder="Password" v-model="password" id="password">
-    <v-btn v-on:click="logIn">ログイン
+    <v-btn @click="logIn">ログイン
     </v-btn>
     <p>Do you have an account? 
       <router-link to="/login">新規登録</router-link>
@@ -13,6 +13,7 @@
 
 <script>
 import firebase from 'firebase'
+import  {db} from '../firebase';
 
 export default {
   name: 'Login',
@@ -25,12 +26,19 @@ export default {
   methods: {
     logIn:function(){
     firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+    .then(res=>{
+      const user = res.user
+      db.collection('users').add({
+        user_id:user.uid,
+      })
+    
     .then(
         alert('ログインしました')
+    
     .catch(error => {
                return alert(error.message)
             }))
-    }
+    })}
   }
 }
       
