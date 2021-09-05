@@ -13,7 +13,8 @@
 
 <script>
 import firebase from 'firebase'
-import  {db} from '../firebase';
+import  {db} from '../firebase'
+
 
 export default {
   name: 'Login',
@@ -23,6 +24,7 @@ export default {
       password: ''
     }
   },
+  
   methods: {
     logIn:function(){
     firebase.auth().signInWithEmailAndPassword(this.email, this.password)
@@ -39,7 +41,11 @@ export default {
                return alert(error.message)
             }))
     })}
-  }
+  },
+  created(){
+  firebase.auth().onAuthStateChanged(user=>{
+       this.user =user ? user :{}
+     })}
 }
       
 </script>

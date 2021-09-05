@@ -9,7 +9,9 @@
   </div>
 </template>
 <script>
-import  {db} from '../firebase';
+import firebase from 'firebase'
+import  {db} from '../firebase'
+import "firebase/auth"
 
 
 export default{
@@ -36,6 +38,9 @@ export default{
       }
     },
    cretated(){
+     firebase.auth().onAuthStateChanged(user=>{
+       this.user =user ? user :{}
+     })},
     //  db =firebase.firestore()
     //  this.cartRef =db.collection('cart')
     //  this.cartRef.onSnapshot(
@@ -47,19 +52,26 @@ export default{
     //      this.carts = obj
     //    }
     //  )
-     },
+   
+
+     
      methods:{
        addToCart (){
-         console.log(this.$route.params.productname)
+        const currentUser = firebase.auth().currentUser;
+        this.uid = currentUser.uid;
+        console.log({})
          db.collection('cart').add({
            id: this.$route.params.id,
            productname: this.$route.params.productname,
            price: this.$route.params.price,
-
+           user_id: currentUser.uid,
          }
-         )
+         )}
        }
      }
-}
+     
+      
+
+
 
 </script>
