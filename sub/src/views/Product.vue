@@ -4,7 +4,11 @@
       <ul>
 
         <li><img :src=url></li>
-        <li> {{price}}円 <router-link to="/cart"><v-btn @click="addToCart">カートへ追加</v-btn></router-link></li>
+        <li> {{price}}円 </li>
+        
+        <li>個数:<input type="number"  v-model.number="quantity" min="1" max="10" value="1" /></li>
+          <router-link to="/cart">
+          <v-btn  @click="addToCart">カートへ追加</v-btn></router-link>
       </ul>
   </div>
 </template>
@@ -12,7 +16,6 @@
 import firebase from 'firebase'
 import  {db} from '../firebase'
 import "firebase/auth"
-
 
 export default{
    computed: {
@@ -35,6 +38,7 @@ export default{
       return{
         db: null,
         cartRef: null,
+        quantity: '',
       }
     },
    cretated(){
@@ -65,6 +69,7 @@ export default{
            productname: this.$route.params.productname,
            price: this.$route.params.price,
            user_id: currentUser.uid,
+           qty: this.quantity,
          }
          )}
        }

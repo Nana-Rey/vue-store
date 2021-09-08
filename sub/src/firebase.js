@@ -2,6 +2,7 @@ import firebase from 'firebase'
 import 'firebase/firestore'
 import 'firebase/auth'
 
+
 // const firebaseConfig = {
 //     apiKey: "AIzaSyB2-YsupzmdFvnaDBFyMZw7rP-tWq1BAa0",
 //     authDomain: "sub-store.firebaseapp.com",
@@ -21,6 +22,7 @@ import 'firebase/auth'
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyB2-YsupzmdFvnaDBFyMZw7rP-tWq1BAa0",
   authDomain: "sub-store.firebaseapp.com",
@@ -33,6 +35,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebaseApp=firebase.initializeApp(firebaseConfig);
-
 
 export const db = firebaseApp.firestore();

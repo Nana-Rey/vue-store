@@ -66,6 +66,16 @@ const routes = [
     name: 'Logout',
     component: ()=> import('../views/Logout.vue'),
     meta: { requiresAuth: true },
+  },
+  {
+    path: '/check',
+    name:'Check',
+    component: ()=> import('../views/Check.vue'),
+  },
+  {
+    path: '/checkout',
+    name:'Checkout',
+    component: ()=> import('../views/Checkout.vue'),
   }
   
   
