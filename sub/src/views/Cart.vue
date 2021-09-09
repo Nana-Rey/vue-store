@@ -8,10 +8,11 @@
             <div>{{ item.id }}</div>
             <div>{{ item.qty }}</div>
        
-         <v-btn type="submit" @click="deleteproduct(item.id)">削除</v-btn>
+         <v-btn type="submit" @click="deleteproduct(item.docid)">削除</v-btn>
          <span>小計{{ item.price * item.qty }}円</span>
       </li> 
    </ul>
+   <h3>合計{{total}}円</h3>
       <router-link to="/"><v-btn>注文を続ける</v-btn></router-link>
       <router-link to="/check"><v-btn>注文を確定する</v-btn></router-link>
 </div>
@@ -46,31 +47,57 @@ import "firebase/auth";
      data(){
         return{
          cartdata:[],
-         
+         num:'',
+         total: 0
         }
      },
       created(){
-       const currentUser = firebase.auth().currentUser;
-       db.collection('cart')
-         .where('user_id','==',currentUser.uid)
-         .get()
-         .then(snapshot =>{
-           snapshot.forEach(doc=>{ 
-              //console.log(doc.id, "=>",doc.data());
-              this.cartdata.push(doc.data())
-              
-           },
-        )})
-        console.log(this.cartdata)},
+       this.display();
+      },
+        
         methods:{
-         deleteproduct: function(){
-           db.collection("cart").delete(this.doc).then(() => {
-    console.log("Document successfully deleted!");
-    }).catch((error) => {
-    console.error("Error removing document: ", error)
-    });
+            deleteproduct: function(deleteid){
+               
+               db.collection("cart")
+                  .doc(deleteid)
+                  .delete().then(() => {
+                  console.log("Document successfully deleted!");
+               }).catch((error) => {
+                     console.error("Error removing document: ", error)
+               });
+               this.cartdata = [];
+               this.display()
+            },
+            display: function(){
+               const currentUser = firebase.auth().currentUser;
+               this.total = 0;
 
-           
+               db.collection('cart')
+                  .where('user_id','==',currentUser.uid)
+                  .get()
+                  .then(snapshot =>{
+                     snapshot.forEach(doc=>{ 
+                        //console.log(doc.id, "=>",doc.data());
+                        let dbitem = doc.data();
+
+                        let cartitem = {
+                           docid : doc.id,
+                           id : dbitem.id,
+                           price : dbitem.price,
+                           productname: dbitem.productname,
+                           qty: dbitem.qty,
+                           user_id: dbitem.user_id,
+                           
+                        }
+                        this.total += cartitem.price * cartitem.qty;
+
+                        // console.log(cartitem)
+                        this.cartdata.push(cartitem)
+                        // console.log(doc.id)
+                        //deleteproduct(doc.id)
+
+                     },)
+                  })
             }
          }
          
