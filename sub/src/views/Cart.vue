@@ -52,7 +52,7 @@ import "firebase/auth";
         }
      },
       created(){
-       this.display();
+         this.display();
       },
         
         methods:{
@@ -66,7 +66,8 @@ import "firebase/auth";
                      console.error("Error removing document: ", error)
                });
                this.cartdata = [];
-               this.display()
+               this.display();
+              
             },
             display: function(){
                const currentUser = firebase.auth().currentUser;

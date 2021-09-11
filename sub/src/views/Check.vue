@@ -2,7 +2,7 @@
   <div>
       <h1>ご注文内容の確認</h1>
       <ul>
-      <li v-for="item in cartdata" :key="item.item_1">
+      <li v-for="item in cartdata" :key="item.item_2">
          <div>{{ item.productname }}</div>
             <div>{{ item.price }}</div>
             <div>{{ item.id }}</div>
@@ -10,6 +10,7 @@
          <span>小計{{ item.price * item.qty }}円</span>
       </li> 
    </ul>
+   <h3>合計{{total}}円</h3>
       <router-link to ="/cart"><v-btn>カートに戻る</v-btn></router-link>
       <router-link to ="/checkout"><v-btn>お支払いへ</v-btn></router-link>
   </div>
