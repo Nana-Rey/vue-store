@@ -1,4 +1,5 @@
 <template>
+
   <div>
       <h1>{{productname}}{{id}}</h1>
       <ul>
@@ -6,7 +7,7 @@
         <li><img :src=url></li>
         <li> {{price}}円 </li>
         
-        <li>個数:<input type="number"  v-model.number="quantity" min="1" max="10" value="1" /></li>
+        <li>個数:<input type="number"  v-model.number="quantity" min="1" max="10" value="1" />個</li>
           <router-link to="/cart">
           <v-btn  @click="addToCart">カートへ追加</v-btn></router-link>
       </ul>
@@ -39,6 +40,7 @@ export default{
         db: null,
         cartRef: null,
         quantity: '',
+        
       }
     },
    cretated(){

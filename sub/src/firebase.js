@@ -34,6 +34,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+// db.settings({ timestampsInsnapshots:true});
 const firebaseApp=firebase.initializeApp(firebaseConfig);
 
 export const db = firebaseApp.firestore();

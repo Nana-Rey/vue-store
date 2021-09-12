@@ -11,7 +11,10 @@
        <router-link to="/cart">Cart </router-link>|
       <router-link to="/login">Login </router-link>|
       <router-link to="/pra">Pra </router-link>|
-      <router-link to="/signup">Signup</router-link>
+      <router-link to="/signup">Signup</router-link>|
+      <router-link to="/log">Log</router-link>|
+      <router-link to="/product2">練習</router-link>|
+      <router-link to="/log2">ログ２</router-link>
      
        
     </div>
