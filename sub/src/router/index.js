@@ -24,23 +24,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/detail',
-    name: 'Detail',
-    component: ()=> import('../views/Detail.vue')
-    
-  },
-  {
-    path: '/pra',
-    name: 'Pra',
-    
-  },
-  {
     path: '/login',
     name: 'Login',
     component: ()=> import('../views/Login.vue')
   },
   {
-    path: '/product/:id/:productname/:price',
+    path: '/product/:id',
     name: 'Product',
     component: ()=> import('../views/Product.vue'),
     props: true
@@ -91,7 +80,30 @@ const routes = [
     path:'/log2',
     name:'Log2',
     component: ()=> import('../views/Log2.vue'),
+  },
+  {
+    path:'/register',
+    name:'Register',
+    component: ()=> import('../views/Register.vue'),
+  },
+  {
+    path:'/detail/:id',
+    name:'Detail',
+    component: ()=> import('../views/Detail.vue'),
+  },
+  {
+    path: '/pra/:id',
+    name: 'Pra',
+    component: ()=> import('../views/Pra.vue'),
+  },
+  {
+    
+      path: '/after',
+      name: 'After',
+      component: ()=> import('../views/After.vue'),
+    
   }
+  
   
   
   

@@ -1,11 +1,11 @@
 <template>
 
   <div>
-      <h1>{{productname}}{{id}}</h1>
+      <h1>{{product.id}}</h1>
       <ul>
 
-        <li><img :src=url></li>
-        <li> {{price}}円 </li>
+        <li><img :src=product.img></li>
+        <li> {{product.price}}円 </li>
         
         <li>個数:<input type="number"  v-model.number="quantity" min="1" max="10" value="1" />個</li>
           <router-link to="/cart">
@@ -16,23 +16,14 @@
 <script>
 import firebase from 'firebase'
 import  {db} from '../firebase'
-import "firebase/auth"
+//import "firebase/auth"
 
 export default{
    computed: {
 
-    id() {
-      return Number(this.$route.params.id);
-    },
-    productname() {
-      return String(this.$route.params.productname);
-    },
-    price(){
-      return String(this.$route.params.price);
-    },
-    url(){
-      return 'https://source.unsplash.com/400x300/?food';
-    }
+      // id() {
+      //   return Number(this.$route.params.id);
+      // },
    
     },
     data(){
@@ -40,13 +31,17 @@ export default{
         db: null,
         cartRef: null,
         quantity: '',
+        product: null,
         
       }
     },
    cretated(){
      firebase.auth().onAuthStateChanged(user=>{
        this.user =user ? user :{}
-     })},
+     })
+     //console.log(this.$route.params.id)
+     this.getProduct(this.$route.params.id);
+    },
     //  db =firebase.firestore()
     //  this.cartRef =db.collection('cart')
     //  this.cartRef.onSnapshot(
@@ -62,6 +57,18 @@ export default{
 
      
      methods:{
+       getProduct: function(id){
+            var doc = db.collection('products').doc(id)
+            this.product = {
+              id  : id,
+              name : doc.name,
+              price : doc.price,
+              img : doc.src
+            }
+            
+        } ,
+      
+       
        addToCart (){
         const currentUser = firebase.auth().currentUser;
         this.uid = currentUser.uid;
@@ -74,8 +81,9 @@ export default{
            qty: this.quantity,
          }
          )}
-       }
      }
+}
+     
      
       
 

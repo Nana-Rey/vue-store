@@ -1,17 +1,39 @@
 <template>
 <div >
    <h1>カート</h1>
-   <ul>
-      <li v-for="item in cartdata" :key="item.item_1">
-         <div>{{ item.productname }}</div>
-            <div>{{ item.price }}</div>
-            <div>{{ item.id }}</div>
-            <div>{{ item.qty }}</div>
-       
-         <v-btn type="submit" @click="deleteproduct(item.docid)">削除</v-btn>
-         <span>小計{{ item.price * item.qty }}円</span>
-      </li> 
-   </ul>
+    <v-simple-table>
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            商品名
+          </th>
+          <th class="text-left">
+            値段
+          </th>
+          <th class="text-left">
+            個数
+          </th>
+          <th class="text-left">
+            小計
+          </th>
+          <th class="text-left">
+            削除
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr v-for="item in cartdata" :key="item.item_1">
+            <td>{{ item.productname }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.qty }}</td>
+            <td>小計{{ item.price * item.qty }}円</td>
+         <td><v-btn type="submit" @click="deleteproduct(item.docid)">削除</v-btn></td> 
+      </tr>
+      </tbody> 
+      </template>
+  </v-simple-table>
+   
    <h3>合計{{total}}円</h3>
       <router-link to="/"><v-btn>注文を続ける</v-btn></router-link>
       <router-link to="/check"><v-btn>注文を確定する</v-btn></router-link>

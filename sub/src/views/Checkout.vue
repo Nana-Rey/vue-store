@@ -41,11 +41,13 @@
         番地・マンション名:<input type="address-line1" placeholder="番地・マンション名" autocomplete="address-line1" v-model="address_line1"/><br>
 
     </v-card>
+    <router-link to="/after">
     <v-btn
         type="submit"
         @click="useradress"
       >購入
       </v-btn>
+    </router-link>
 </div>
 </template>
 
@@ -70,7 +72,10 @@ export default {
               address_level2: this.address_level2,
               address_line1: this.address_line1,
           })
-      }
+      },
+      
+        
+      
   }
 }
 </script>

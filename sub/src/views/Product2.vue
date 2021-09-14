@@ -23,9 +23,9 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              {{item.price}}
               {{item.name}}
-              <v-btn>詳細</v-btn>
+              {{item.price}}円
+              <v-btn><router-link :to="{name:'Pra', params:{id:item.id}}">詳細</router-link></v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -55,7 +55,9 @@ export default {
                     //console.log(doc.id, " => ", doc.data());
                     var product = doc.data();
                     console.log(product)
+                    console.log(doc.id)
                     this.products.push({
+                        id : doc.id,
                         name: product.productname,
                         price : product.price,
                         img: product.src,

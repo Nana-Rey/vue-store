@@ -5,9 +5,10 @@
     <input type="password" placeholder="Password" v-model="password" id="password">
     <v-btn @click="logIn">ログイン
     </v-btn>
-    <p>Do you have an account? 
+    <p>アカウントをお持ちですか? 
       <router-link to="/login">新規登録</router-link>
     </p>
+    <v-btn @click="signOut">ログアウト</v-btn>
   </div>
 </template>
 
@@ -40,7 +41,19 @@ export default {
     .catch(error => {
                return alert(error.message)
             }))
-    })}
+    })},
+    signOut: function() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert("ログアウトしました。");
+          this.$router.push("/");
+        })
+        .catch(() => {
+          alert("ログアウトができません。");
+        });
+    },
   },
   created(){
   firebase.auth().onAuthStateChanged(user=>{
