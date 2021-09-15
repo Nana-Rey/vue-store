@@ -5,16 +5,16 @@
       <thead>
         <tr>
           <th class="text-left">
-            productname
+            商品名
           </th>
           <th class="text-left">
-            price
+            値段
           </th>
           <th class="text-left">
-              qty
+              数
           </th>
           <th class="text-left">
-              total
+              小計
           </th>
         </tr>
       </thead>
@@ -46,7 +46,7 @@ import "firebase/auth"
     },
     created(){
        const currentUser = firebase.auth().currentUser;
-       db.collection('cart')
+       db.collection('log')
          .where('user_id','==',currentUser.uid)
          .get()
          .then(snapshot =>{

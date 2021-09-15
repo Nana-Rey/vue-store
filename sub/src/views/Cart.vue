@@ -36,7 +36,7 @@
    
    <h3>合計{{total}}円</h3>
       <router-link to="/"><v-btn>注文を続ける</v-btn></router-link>
-      <router-link to="/check"><v-btn>注文を確定する</v-btn></router-link>
+      <router-link to="/checkout"><v-btn>お支払へ</v-btn></router-link>
 </div>
 </template>
 
@@ -122,34 +122,30 @@ import "firebase/auth";
                      },)
                   })
             }
-         }
-         
-        
-        }
-  
-
-// // export default{
-// //    computed: {
-// // data: function() {
-// //    return {
-    
-    
-// //    }
-// // }},
-// //  methods: {
-// //             // getData: function () {
-// //             //     const  db = firebase.firestore();
-// //             //     // データ取得
-// //             //     db.collection('cart').where('id', '==', Number(this.id)).get(
-// //             //     ).then((querySnapshot) => {
-// //             //         querySnapshot.forEach((doc) => {
-// //             //             console.log(doc.id, ' => ', doc.data())
-// //             //            this.title=doc.data().title
-// //             //            this.price=doc.data().price
-// //             //         });
-// //             //     });
-// //             // },
-// // }}
+         },  
+  }   
+ 
+// export default{
+//    computed: {
+// data: function() {
+//    return { }
+// }},
+// }
+//   }
+//  methods: {
+//             // getData: function () {
+//             //     const  db = firebase.firestore();
+//             //     // データ取得
+//             //     db.collection('cart').where('id', '==', Number(this.id)).get(
+//             //     ).then((querySnapshot) => {
+//             //         querySnapshot.forEach((doc) => {
+//             //             console.log(doc.id, ' => ', doc.data())
+//             //            this.title=doc.data().title
+//             //            this.price=doc.data().price
+//             //         });
+//             //     });
+//             // },
+// }}
   
 </script>
 

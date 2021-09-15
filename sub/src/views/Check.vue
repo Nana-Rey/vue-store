@@ -22,16 +22,16 @@
       <tbody>
       <tr v-for="item in product" :key="item.item_1">
             <td>{{ item.productname }}</td>
-            <td>{{ item.price }}</td>
-            <td>{{ item.qty }}</td>
-            <td>小計{{ item.price * item.qty }}円</td>
+            <td>{{ item.price }}円</td>
+            <td>{{ item.qty }}個</td>
+            <td>{{ item.price * item.qty }}円</td>
       </tr>
       </tbody> 
       </template>
   </v-simple-table>
    <h3>合計{{total}}円</h3>
       <router-link to ="/cart"><v-btn>カートに戻る</v-btn></router-link>
-      <router-link to ="/checkout"><v-btn >お支払いへ</v-btn></router-link>
+      <router-link to ="/after"><v-btn @click="addlog">購入へ</v-btn></router-link>
   </div>
 </template>
 
@@ -52,10 +52,12 @@ export default {
           qty:'',
           user_id:'',
           timestamp:'',
+          id:''
         }
      },
    created:function(){
         this.getProducts();
+        this.addlog();
         console.log(this.products)
     },  
  methods:{
@@ -73,15 +75,30 @@ export default {
                         productname: product.productname,
                         price : product.price,
                         qty: product.qty,
+                        id: doc.id,
                     })
+                    console.log(doc.id)
                      this.total += product.price * product.qty;
                 }))
             }).catch((error) => {
                      console.error("Error removing document: ", error)
                });
             },
+        addlog: function(){
+            const currentUser = firebase.auth().currentUser;
+            this.uid = currentUser.uid;
+            // const db.collection('cart').doc({this.id})
+            db.collection('log')
+            .addAll({
+            productname: this.item.productname,
+             price: this.item.price,
+             user_id: currentUser.uid,
+             qty: this.item.qty,
+         }
+            )}
+            }
     }
-}  
+
 </script>
 
 <style>

@@ -13,7 +13,7 @@
                 <v-card-title>
                     {{product.productname}}
                     {{product.price}}円
-                    個数:<input type="number"  v-model.number="quantity" min="1" max="10" value="1" />個
+                    個数:<input type="number"  v-model.number="quantity" min="1" max="10" value="1"/>個
 
                 </v-card-title>
                
@@ -42,6 +42,10 @@ export default {
         return {
             product : null,
             quantity: '',
+            productname:'',
+            price:'',
+            user_id:'',
+            qty:'',
         }
     },
     computed:{
@@ -65,13 +69,14 @@ export default {
             
           
         },
-        addToCart (){
+        addToCart: function(){
         const currentUser = firebase.auth().currentUser;
         this.uid = currentUser.uid;
-         db.collection('cart').add({
+         db.collection('cart')
+         .add({
            id: this.$route.params.id,
-           productname: this.$route.params.productname,
-           price: this.$route.params.price,
+           productname: this.product.productname,
+           price: this.product.price,
            user_id: currentUser.uid,
            qty: this.quantity,
          }

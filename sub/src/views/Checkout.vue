@@ -41,11 +41,11 @@
         番地・マンション名:<input type="address-line1" placeholder="番地・マンション名" autocomplete="address-line1" v-model="address_line1"/><br>
 
     </v-card>
-    <router-link to="/after">
+    <router-link to="/check">
     <v-btn
         type="submit"
         @click="useradress"
-      >購入
+      >確認画面へ
       </v-btn>
     </router-link>
 </div>
