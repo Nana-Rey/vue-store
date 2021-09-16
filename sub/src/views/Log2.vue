@@ -5,7 +5,7 @@
       <thead>
         <tr>
           <th class="text-left">
-            商品名
+           日付
           </th>
           <th class="text-left">
             値段
@@ -23,10 +23,10 @@
           v-for="item in cart"
           :key="item.productname"
         >
-          <td>{{ item.productname }}</td>
-          <td>{{ item.price }}</td>
+          <td>{{ item.createdAt }}</td>
+          <td>{{ item.total }}</td>
           <td>{{ item.qty}}</td>
-          <td>{{ item.price * item.qty }}</td>
+          <td>{{ item.orderTotal }}</td>
         </tr>
       </tbody>
     </template>
@@ -46,7 +46,8 @@ import "firebase/auth"
     },
     created(){
        const currentUser = firebase.auth().currentUser;
-       db.collection('log')
+        this.uid = currentUser.uid;
+       db.collection('Orders')
          .where('user_id','==',currentUser.uid)
          .get()
          .then(snapshot =>{
