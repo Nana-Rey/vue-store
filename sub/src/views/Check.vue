@@ -70,6 +70,11 @@ export default {
     }
     },
     methods:{
+        getUniqueStr : function (myStrong){
+          var strong = 1000;
+          if (myStrong) strong = myStrong;
+          return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16)
+        },
         getProducts: function(){
            const currentUser = firebase.auth().currentUser;
            this.uid = currentUser.uid;
@@ -87,7 +92,7 @@ export default {
                         price : product.price,
                         qty: product.qty,
                         id: doc.id,
-                        
+                        img: product.img,
                     })
                     console.log(doc.id)
                     this.total += product.price * product.qty;
@@ -103,7 +108,7 @@ export default {
               const currentUser = firebase.auth().currentUser;
               this.uid = currentUser.uid;
               var order = {
-                orderid : Date.now(),
+                orderId : this.getUniqueStr(),
                 userid : currentUser.uid,
                 createdAt: new Date(),
                 orderTotal : this.total
@@ -117,12 +122,13 @@ export default {
 
               this.product.forEach(p=>{
                 var orderItem = {
-                  orderId : order.orderid,
+                  orderId : order.orderId,
                   id: p.id,
                   productname: p.productname,
                   price: p.price,
                   user_id: currentUser.uid,
                   qty: p.qty,
+                  img: p.img
                 };
 
                 console.log('orderitem:' + orderItem)

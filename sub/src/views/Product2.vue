@@ -25,7 +25,7 @@
               <v-spacer></v-spacer>
               {{item.name}}
               {{item.price}}円
-              <v-btn><router-link :to="{name:'Pra', params:{id:item.id}}">詳細</router-link></v-btn>
+              <v-btn><router-link :to="{name:'Detail1', params:{id:item.id}}">詳細</router-link></v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

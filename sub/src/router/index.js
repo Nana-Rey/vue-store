@@ -29,9 +29,9 @@ const routes = [
     component: ()=> import('../views/Login.vue')
   },
   {
-    path: '/product/:id',
-    name: 'Product',
-    component: ()=> import('../views/Product.vue'),
+    path: '/detail/:id',
+    name: 'detail',
+    component: ()=> import('../views/Detail.vue'),
     props: true
   },
   {
@@ -41,20 +41,9 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: '/list',
-    name: 'List',
-    component: ()=> import('../views/List.vue')
-  },
-  {
     path: '/signup',
     name: 'Signup',
     component: ()=> import('../views/Signup.vue')
-  },
-  {
-    path: '/logout',
-    name: 'Logout',
-    component: ()=> import('../views/Logout.vue'),
-    meta: { requiresAuth: true },
   },
   {
     path: '/check',
@@ -65,11 +54,6 @@ const routes = [
     path: '/checkout',
     name:'Checkout',
     component: ()=> import('../views/Checkout.vue'),
-  },
-  {
-    path: '/log',
-    name: 'Log',
-    component: ()=> import('../views/Log.vue'),
   },
   {
     path:'/product2',
@@ -87,14 +71,9 @@ const routes = [
     component: ()=> import('../views/Register.vue'),
   },
   {
-    path:'/detail/:id',
-    name:'Detail',
-    component: ()=> import('../views/Detail.vue'),
-  },
-  {
-    path: '/pra/:id',
-    name: 'Pra',
-    component: ()=> import('../views/Pra.vue'),
+    path:'/detail1/:id',
+    name:'Detail1',
+    component: ()=> import('../views/Detail1.vue'),
   },
   {
     
@@ -102,6 +81,11 @@ const routes = [
       name: 'After',
       component: ()=> import('../views/After.vue'),
     
+  },
+  {
+    path:'/detail/:orderId',
+    name:'Detail_detail',
+    component:()=> import('../views/Detail.vue'),
   }
   
   

@@ -4,17 +4,14 @@
     <template v-slot:default>
       <thead>
         <tr>
+          <th>
+            オーダID
+          </th>
           <th class="text-left">
            日付
           </th>
           <th class="text-left">
-            値段
-          </th>
-          <th class="text-left">
-              数
-          </th>
-          <th class="text-left">
-              小計
+            合計
           </th>
         </tr>
       </thead>
@@ -22,10 +19,10 @@
         <tr
           v-for="item in cart"
           :key="item.productname"
+          
         >
-          <td>{{ item.createdAt }}</td>
-          <td>{{ item.total }}</td>
-          <td>{{ item.qty}}</td>
+          <td><router-link :to="{name:'Order_detail', params:{orderId:item.orderId}}">{{item.orderId}}</router-link></td>
+          <td>{{ item.createdAt}}</td>
           <td>{{ item.orderTotal }}</td>
         </tr>
       </tbody>
@@ -36,28 +33,52 @@
 
 <script>
 import  {db} from '../firebase'
-import firebase from 'firebase'
-import "firebase/auth"
+import firebase from 'firebase/app';
+//import firebase from 'firebase'
+import 'firebase/firestore';
+import "firebase/auth";
+
   export default {
     data () {
       return {
           cart:[],
     }
     },
+    computed:{
+        orderid : function(){
+            return this.$route.params.orderid;
+        }
+    },
+    methods:{
+      getTimeStamp: function(date){
+        return new Date(date).toDateString()
+      }
+    },
     created(){
+      firebase.auth.is
        const currentUser = firebase.auth().currentUser;
-        this.uid = currentUser.uid;
+       
+       if(currentUser){
+         this.uid = currentUser.uid;
+       } else {
+         this.$router.push('Login')
+         return
+       }
+       //console.log(currentUser)
+        
+        
        db.collection('Orders')
-         .where('user_id','==',currentUser.uid)
+         .where('userid','==',currentUser.uid)
          .get()
          .then(snapshot =>{
            snapshot.forEach(doc=>{ 
             console.log(doc.id, "=>",doc.data());
-              this.cart.push(doc.data())
-              
+            this.cart.push(doc.data())
            },
         )})
         console.log(this.cart)},
+
+        
   }
 
 </script>

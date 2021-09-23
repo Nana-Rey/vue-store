@@ -1,9 +1,11 @@
 <template>
   <div>
       <div v-if="product">
-        <v-container grey lighten-5>
+        <v-container grey lighten-5 >
             <v-card
-                
+                class="mx-auto"
+                width="500px"
+                ma-3 text-xs-center
                 >
                 <v-spacer></v-spacer>
                 <v-img
@@ -12,14 +14,26 @@
                 ></v-img>
                 <v-card-title>
                     {{product.productname}}
-                    {{product.price}}円
-                    個数:<input type="number"  v-model.number="quantity" min="1" max="10" value="1"/>個
-
                 </v-card-title>
-               
-                    <router-link to="/cart"><v-btn @click="addToCart">
-                        Add to Cart
-                    </v-btn></router-link>
+                <v-card-text>
+                    {{product.price}}円
+                </v-card-text>
+                <v-card-text>
+                    <input type="number"  v-model.number="quantity" min="1" max="10" />個
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    
+                    <router-link to="/cart">
+                        <v-btn @click="addToCart">
+                            <v-icon>
+                                mdi-basket
+                            </v-icon>
+                            カートへ入れる
+                        </v-btn>
+                    </router-link>
+                    
+                </v-card-actions>
              
 
             </v-card>
@@ -41,11 +55,12 @@ export default {
     data(){
         return {
             product : null,
-            quantity: '',
+            quantity: 1,
             productname:'',
             price:'',
             user_id:'',
             qty:'',
+            img:''
         }
     },
     computed:{
@@ -79,6 +94,7 @@ export default {
            price: this.product.price,
            user_id: currentUser.uid,
            qty: this.quantity,
+           img: this.product.src,
          }
          )}
     }

@@ -8,7 +8,7 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-app-bar-title>Title</v-app-bar-title>
+      <v-app-bar-text>Store</v-app-bar-text>
 
       <v-spacer></v-spacer>
 
@@ -33,7 +33,7 @@
           active-class="deep-purple--text text--accent-4"
         >
           <v-list-item>
-            <v-list-item-title><router-link to="/">Home </router-link></v-list-item-title>
+            <v-list-item-title><router-link to="/product2">Home </router-link></v-list-item-title>
           </v-list-item>
 
           <v-list-item>
@@ -66,24 +66,10 @@
   </v-sheet>
  
     <header class="header">
-      <router-link to="/">
+      <router-link to="/product2">
     
       </router-link>
     </header>
-    <div id="nav">
-      <router-link to="/">Home </router-link> |
-      <router-link to="/detail">Detail </router-link>|
-       <router-link to="/cart">Cart </router-link>|
-      <router-link to="/login">Login </router-link>|
-      <router-link to="/pra">Pra </router-link>|
-      <router-link to="/signup">Signup</router-link>|
-      <router-link to="/log">Log</router-link>|
-      <router-link to="/product2">練習</router-link>|
-      <router-link to="/log2">ログ２</router-link>|
-      <router-link to="/register">登録</router-link>
-     
-       
-    </div>
     <v-main>
       <router-view/>
     </v-main>

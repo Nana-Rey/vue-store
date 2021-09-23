@@ -6,7 +6,7 @@
     <v-btn @click="logIn">ログイン
     </v-btn>
     <p>アカウントをお持ちですか? 
-      <router-link to="/login">新規登録</router-link>
+      <router-link to="/signup">新規登録</router-link>
     </p>
     <v-btn @click="signOut">ログアウト</v-btn>
   </div>
@@ -35,20 +35,22 @@ export default {
         user_id:user.uid,
       })
     
-    .then(
+    .then(() =>{
         alert('ログインしました')
-    
-    .catch(error => {
-               return alert(error.message)
-            }))
-    })},
+        this.$router.push("/cart");
+    })
+    .catch(() => {
+               alert('登録情報が正しくありません。')
+            })
+    })
+    },
     signOut: function() {
       firebase
         .auth()
         .signOut()
         .then(() => {
           alert("ログアウトしました。");
-          this.$router.push("/");
+          this.$router.push("/product2");
         })
         .catch(() => {
           alert("ログアウトができません。");
@@ -58,7 +60,8 @@ export default {
   created(){
   firebase.auth().onAuthStateChanged(user=>{
        this.user =user ? user :{}
-     })}
+     })
+    }
 }
       
 </script>

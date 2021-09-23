@@ -125,28 +125,7 @@ import "firebase/auth";
          },  
   }   
  
-// export default{
-//    computed: {
-// data: function() {
-//    return { }
-// }},
-// }
-//   }
-//  methods: {
-//             // getData: function () {
-//             //     const  db = firebase.firestore();
-//             //     // データ取得
-//             //     db.collection('cart').where('id', '==', Number(this.id)).get(
-//             //     ).then((querySnapshot) => {
-//             //         querySnapshot.forEach((doc) => {
-//             //             console.log(doc.id, ' => ', doc.data())
-//             //            this.title=doc.data().title
-//             //            this.price=doc.data().price
-//             //         });
-//             //     });
-//             // },
-// }}
-  
+
 </script>
 
 
